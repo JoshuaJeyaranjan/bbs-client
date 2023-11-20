@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WestStandings = () => {
+const SignUpPage = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const WestStandings = () => {
     );
 };
 
-export default WestStandings;
+export default SignUpPage;
