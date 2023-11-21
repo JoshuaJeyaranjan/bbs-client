@@ -5,14 +5,16 @@ import PlayerPage from './Pages/PlayerPage/PlayerPage';
 import TeamPage from './Pages/TeamPage/TeamPage';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import SignUpPage from './Pages/SignUpPage/SignUpPage';
+import TeamListPage from './Pages/TeamListPage/TeamListPage';
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
-    <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/players/:id" element={<PlayerPage />} />
         <Route path="/teams/:id" element={<TeamPage />} />
+        <Route path="/teams" element={<TeamListPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
     </Routes>
