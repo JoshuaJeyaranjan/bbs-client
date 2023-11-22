@@ -1,10 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
 const PlayerListPage = () => {
   const [players, setPlayers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [user, setUser] = useState(null);
+  const [failedAuth, setFailedAuth] = useState(false);
 
+  const getCurrentUser = async () => {
+    const token = sessionStorage.getItem("token");
+
+    if (!token) {
+      return setFailedAuth(true);
+    }
+
+    // Get the data from the API
+    axios
+      .get("http://localhost:8080/api/current", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setUser(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setFailedAuth(true);
+      });
+  };
   // Fetch players data from the server on component mount
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -25,6 +51,39 @@ const PlayerListPage = () => {
     const fullName = `${player.first_name} ${player.last_name}`.toLowerCase();
     return fullName.includes(searchTerm.toLowerCase());
   });
+
+  const addToWatchlist = async (playerId) => {
+    try {
+      const token = sessionStorage.getItem("token");
+      const response = await axios.post(
+        "http://localhost:8080/api/watchlist/player",
+        playerId,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(response);
+
+      if (response.status === 201) {
+        // Update local state or take any additional actions on success
+        console.log("Player added to watchlist successfully");
+      } else {
+        // Handle error from the server
+        console.error("Error adding player to watchlist:", response.data);
+      }
+    } catch (error) {
+      // Handle network error or other unexpected issues
+      console.error("Error adding player to watchlist:", error);
+    }
+  };
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
+
 
   return (
     <div>
@@ -47,6 +106,9 @@ const PlayerListPage = () => {
               {/* Display the first and last name of each player */}
               {`${player.first_name} ${player.last_name}`}
             </Link>
+            <button onClick={() => addToWatchlist(player.id)}>
+          Add to Watchlist
+        </button>
           </li>
         ))}
       </ul>

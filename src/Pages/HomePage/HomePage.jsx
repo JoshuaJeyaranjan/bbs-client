@@ -19,6 +19,7 @@ function HomePage() {
       .get("http://localhost:8080/api/current", {
         headers: {
           Authorization: `Bearer ${token}`,
+          
         },
       })
       .then((response) => {
