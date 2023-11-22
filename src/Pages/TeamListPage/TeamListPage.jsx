@@ -1,16 +1,15 @@
-// Import necessary dependencies
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Make sure to have react-router-dom installed
+import { Link } from 'react-router-dom';
 
 const TeamListPage = () => {
-  // State to store the teams data
   const [teams, setTeams] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Fetch teams data from the server on component mount
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/teams'); // Adjust the endpoint based on your server setup
+        const response = await fetch('http://localhost:8080/api/teams');
         const data = await response.json();
         setTeams(data);
       } catch (error) {
@@ -21,14 +20,29 @@ const TeamListPage = () => {
     fetchTeams();
   }, []); // Empty dependency array ensures this runs only once on mount
 
+  // Filtered teams based on search term
+  const filteredTeams = teams.filter((team) => {
+    const teamName = `${team.city} ${team.name}`.toLowerCase();
+    return teamName.includes(searchTerm.toLowerCase());
+  });
+
   return (
     <div>
       <h1>Team List</h1>
+      
+      {/* Search bar */}
+      <input
+        type="text"
+        placeholder="Search teams..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
       <ul>
-        {/* Map through teams and create list items with links */}
-        {teams.map((team) => (
+        {/* Map through filtered teams or all teams if search term is empty */}
+        {(searchTerm === '' ? teams : filteredTeams).map((team) => (
           <li key={team.id}>
-            {/* Use Link component to create a link to individual team page */}
+            {/* Use Link component to create a link to the individual team page */}
             <Link to={`/teams/${team.id}`}>
               {/* Display the city and name of each team */}
               {`${team.city} ${team.name}`}
