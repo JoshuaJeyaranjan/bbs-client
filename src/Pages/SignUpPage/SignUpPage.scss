@@ -61,10 +61,10 @@
     z-index: 1; /* Keep this at a lower z-index */
 }
 
-.HomePage {
+.signup-page {
     &__header {
-        top: 10rem;
-        left: 20vw;
+        top: 8rem;
+        left: 70vw;
         font-weight: bold;
         color: rgb(255, 166, 0);
         position: relative; /* Add position property */
@@ -76,12 +76,13 @@
 
     &__slogan {
         top: 15rem;
-        left: 40vw;
+        left: 38vw;
         font-weight: 200;
         color: white;
         position: relative; /* Add position property */
         z-index: 2;
         // font-style: italic;
+        
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
     }
@@ -95,7 +96,7 @@
         top: 15rem;
         position: relative;
         z-index: 2;
-        // background-color: red;
+        background-color: red;
         width: 10rem;
         height: 2.5rem;
         border-radius: .5rem;
@@ -103,8 +104,8 @@
         &__text{
          color:white ;   
          text-decoration: none;
-         
-         
+         margin-left: 3rem;
+         padding-top: .55rem;
          font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
          font-style: italic;
         }
@@ -136,30 +137,59 @@
 .link_container{
     display: flex;
     flex-direction: row;
-    width: 100%;
     justify-content: center;
-}
-
-.watched-container{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+    align-items: center;
     justify-content: space-evenly;
-}
-
-.dashboard__logout{
-    margin-left: 48vw;
-    width: 6rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
-.welcome{
-    margin-left: 5vw;
-}
-.dashboard{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     
 }
+
+.login-text{
+    margin-right: 20rem;
+}
+.signup {
+    z-index: 3;
+  
+    position: relative; /* Add position property */
+    /* Add other styles if needed */
+    background-color: transparentize($color: white, $amount: 0.5);
+    width: 12rem;
+    border-radius: .25rem;
+    margin-left: 45vw;
+    display: flex;
+    flex-direction: column;
+    column-gap: 1rem;
+    justify-content: center;
+    align-content: center;
+  
+    &__form-input {
+      z-index: 3;
+      /* Add other styles if needed */
+    }
+  
+    &__button {
+      z-index: 3;
+      /* Add other styles if needed */
+      
+      position: relative;
+      z-index: 2;
+        margin: .5rem;
+      width: 10rem;
+      height: 2.5rem;
+      border-radius: .5rem;
+      justify-self: center;
+      align-self: center;
+
+      &__text{
+        color:white ;   
+        text-decoration: none;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-style: italic;
+       }
+    }
+  
+    &__message {
+      z-index: 3;
+      /* Add other styles if needed */
+    }
+  }
+  

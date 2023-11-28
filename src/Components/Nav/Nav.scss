@@ -1,0 +1,18 @@
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 1rem;
+    width: 100vw;
+    
+    
+
+    &__link {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-weight: bold;
+        font-size: 3rem;
+        &.active {
+            color: orange;
+        }
+    }
+}

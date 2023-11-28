@@ -1,0 +1,42 @@
+.team-overlay {
+    position: relative;
+    
+  }
+  
+  .banner {
+    height: 100vh; /* Adjust the height as needed */
+    background-size: cover; /* Adjust background size as needed */
+    position: relative;
+  }
+  
+
+  
+  .logo{
+    height: 5rem;
+    width: 5rem;
+  }
+
+  .team-page{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+  .overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Adjust text color */
+    /* Add more styling as needed */
+    background-color: transparentize($color: white, $amount: 0.2);
+    max-height: 40rem;
+    display: flex;
+    flex-direction: row;
+    max-width: 80vw;
+    color: black;
+    
+  }
+  .team-overview{
+    display: flex;
+    flex-direction: column;
+  }

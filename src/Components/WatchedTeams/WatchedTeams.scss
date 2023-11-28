@@ -1,0 +1,55 @@
+.team-list{
+    margin: 0;
+    padding: 0;
+}
+
+.team-list-item {
+    text-decoration: none;
+    list-style: none;
+    padding: .5rem;
+    display: flex;
+    justify-content: space-between;
+    transition: transform 0.2s ease-out; /* Add a smooth transition effect */
+
+    /* Set initial position */
+    transform: translateY(0);
+  }
+
+  .team-list-item:hover {
+    /* Move up and scale slightly on hover */
+    transform: translateY(-5px) scale(1.05);
+}
+  
+  .watchedTeams{
+    text-decoration: none;
+    list-style: none;
+    border: 1px solid black;
+    border-radius: .25rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+  }
+
+  .title{
+    padding-bottom: .5rem;
+    justify-self: center;
+    
+  }
+
+  .mini-logo{
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .team-name{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    
+  }
+
+  .remove-button{
+    justify-self: flex-end;
+    align-self: flex-end;
+  }
