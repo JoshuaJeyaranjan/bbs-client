@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import Nav from "../../Components/Nav/Nav";
+import Button from "react-bootstrap/Button";
+import "./PlayerListPage.scss";
 
 const PlayerListPage = () => {
   const [players, setPlayers] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [user, setUser] = useState(null);
   const [failedAuth, setFailedAuth] = useState(false);
 
@@ -35,11 +38,11 @@ const PlayerListPage = () => {
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/players');
+        const response = await fetch("http://localhost:8080/api/players");
         const data = await response.json();
         setPlayers(data);
       } catch (error) {
-        console.error('Error fetching players:', error);
+        console.error("Error fetching players:", error);
       }
     };
 
@@ -57,7 +60,7 @@ const PlayerListPage = () => {
       const token = sessionStorage.getItem("token");
       const response = await axios.post(
         "http://localhost:8080/api/watchlist/player",
-        playerId,
+        { playerId },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -84,31 +87,54 @@ const PlayerListPage = () => {
     getCurrentUser();
   }, []);
 
-
   return (
-    <div>
-      <h1>I am the Player List Page</h1>
+    <div className="player-list-page">
+      <Nav isAuthenticated={user !== null} />
       
+
       {/* Search bar */}
       <input
+      className="player-searchbar"
         type="text"
         placeholder="Search players..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      <ul>
+      <ul className="list-for-players">
         {/* Map through filtered players or all players if search term is empty */}
-        {(searchTerm === '' ? players : filteredPlayers).map((player) => (
-          <li key={player.id}>
-            {/* Use Link component to create a link to the individual player page */}
-            <Link to={`/players/${player.id}`}>
-              {/* Display the first and last name of each player */}
-              {`${player.first_name} ${player.last_name}`}
+        {(searchTerm === "" ? players : filteredPlayers).map((player) => (
+          <li className="player-item for-list" key={player.id}>
+            <Link className="card" to={`/players/${player.id}`}>
+              {/* Fetch and display headshot for each watched player */}
+              <img
+                className="headshot"
+                src={`https://www.basketball-reference.com/req/202106291/images/headshots/${player.last_name
+                  .substring(0, 5)
+                  .toLowerCase()}${player.first_name
+                  .substring(0, 2)
+                  .toLowerCase()}01.jpg`}
+                alt={`${player.first_name} ${player.last_name} headshot`}
+              />
+               <div className="player-list-details">
+               <div className="player-list-name">
+                {player.first_name} {player.last_name} 
+                    </div>
+              
+              {/* Team: {player.teamName} */}
+              Position: {player.position} <br />
+              Height: {player.height_feet}ft. {player.height_inches}in. <br />
+              Weight: {player.weight_pounds} lbs.
+
+               </div>
+                
             </Link>
-            <button onClick={() => addToWatchlist(player.id)}>
-          Add to Watchlist
-        </button>
+            <Button
+              variant="outline-primary"
+              onClick={() => addToWatchlist(player.id)}
+            >
+              Add to Watchlist
+            </Button>
           </li>
         ))}
       </ul>

@@ -1,0 +1,39 @@
+.watchedPlayers{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    text-decoration: none;
+    list-style: none;
+    border: 1px solid black;
+    border-radius: .25rem;
+    padding: 1rem;
+}
+
+.list{
+    list-style: none;
+    display: flex;
+    flex-direction: column; 
+    flex-wrap: wrap;
+}
+
+.title{
+    padding-bottom: .5rem;
+    
+}
+
+.watched-player-name{
+    font-weight: bold;
+    display: block;
+    margin-bottom: .5rem;
+    margin-top: .75rem;
+
+    
+}
+
+.watched-player-details{
+    
+    
+    
+
+}

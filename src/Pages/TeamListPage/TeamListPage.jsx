@@ -1,12 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Nav from "../../Components/Nav/Nav";
+import './TeamListPage.scss'
+import Button from 'react-bootstrap/Button';
 
 const TeamListPage = () => {
   const [teams, setTeams] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [user, setUser] = useState(null);
   const [failedAuth, setFailedAuth] = useState(false);
+  const [useRetroLogos, setUseRetroLogos] = useState(false); // Added state for logo type
+
+  const removeFromWatchlist = async (type, id) => {
+    try {
+      const token = sessionStorage.getItem("token");
+      const response = await axios.delete(
+        `http://localhost:8080/api/watchlist/${type}/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(response);
+
+      if (response.status === 204) {
+        // Update local state or take any additional actions on success
+        console.log(`${type} removed from watchlist successfully`);
+      } else {
+        // Handle error from the server
+        console.error(`Error removing ${type} from watchlist:`, response.data);
+      }
+    } catch (error) {
+      // Handle network error or other unexpected issues
+      console.error(`Error removing ${type} from watchlist:`, error);
+    }
+  };
 
   const getCurrentUser = async () => {
     const token = sessionStorage.getItem("token");
@@ -59,7 +90,7 @@ const TeamListPage = () => {
       const token = sessionStorage.getItem("token");
       const response = await axios.post(
         "http://localhost:8080/api/watchlist/team",
-        teamId,
+        { teamId: teamId },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -67,7 +98,7 @@ const TeamListPage = () => {
         }
       );
 
-      console.log(response);
+      
 
       if (response.status === 201) {
         // Update local state or take any additional actions on success
@@ -84,30 +115,45 @@ const TeamListPage = () => {
 
   const renderTeams = (teamsToRender) => {
     return teamsToRender.map((team) => (
-      <li key={team.id}>
-        <Link to={`/teams/${team.id}`}>{`${team.city} ${team.name}`}</Link>
-        {/* Add button to add the team to the watchlist */}
-        <button onClick={() => addToWatchlist(team.id)}>
+      <li className="team-item" key={team.id}>
+        <Link className="link" to={`/teams/${team.id}`}>
+          {/* Use the selected logo type */}
+          <img className="logo" src={useRetroLogos ? team.retroLogo : team.logo} alt="Team Logo" />
+          {`${team.city} ${team.name}`}
+        </Link>
+        <Button className="button" variant="primary" onClick={() => addToWatchlist(team.id)}>
           Add to Watchlist
-        </button>
+        </Button>
       </li>
     ));
   };
 
   return (
-    <div>
-      <h1>Team List</h1>
+    <div className="team-list">
+      <Nav isAuthenticated={user !== null} />
+
+      {/* Add a button to toggle between regular and retro logos */}
+      <Button
+        className="logo-toggle-button"
+        variant="secondary"
+        onClick={() => setUseRetroLogos((prev) => !prev)}
+      >
+        {useRetroLogos ? "Use Regular Logos" : "Use Retro Logos"}
+      </Button>
+
       <input
+        className="search"
         type="text"
         placeholder="Search teams..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <ul>
+      <ul className="list-for-teams">
         {searchTerm === "" ? renderTeams(teams) : renderTeams(filteredTeams)}
       </ul>
     </div>
   );
 };
+
 
 export default TeamListPage;

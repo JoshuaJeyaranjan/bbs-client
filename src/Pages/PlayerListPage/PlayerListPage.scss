@@ -1,0 +1,33 @@
+.for-list{
+    justify-content: space-around;
+    max-width: 30vw;
+
+}
+
+.list-for-players{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.player-list-page{
+display: flex;
+flex-direction: column;
+align-content: center;
+align-items: center;
+}
+.player-searchbar{
+width: 25vw;
+margin: 2rem;
+}
+.player-list-name{
+    font-weight: bold;
+    margin-top: .5rem;
+    margin-bottom: .75rem;
+}
+.player-list-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}

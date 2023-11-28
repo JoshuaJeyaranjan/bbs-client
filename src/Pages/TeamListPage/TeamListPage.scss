@@ -1,0 +1,59 @@
+.team-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.search{
+    width: 25vw;
+    align-self: center;
+    margin: 2rem;
+    margin-bottom: 0;
+}
+
+.title{
+    align-self: center;
+}
+
+.logo{
+    height: 5rem;
+    width: 5rem;
+}
+
+.list-for-teams{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    margin-top: 3rem;
+}
+
+.team-item{
+    display: flex;
+    flex-direction: column;
+    width: 18vw;
+    align-items: center;
+    padding: 1rem;
+}
+
+.button{
+    width: 10rem;
+    margin-bottom: 1rem;
+    margin-top: .5rem;
+}
+
+.link{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    transition: transform 0.2s ease-out; /* Add a smooth transition effect */
+
+    /* Set initial position */
+    transform: translateY(0);
+}
+
+.link:hover {
+    /* Move up and scale slightly on hover */
+    transform: translateY(-5px) scale(1.05);
+}

@@ -1,6 +1,6 @@
 import React from "react";
 
-const PlayerCareerTotal = ({ careerStats },{playerId}) => {
+const PlayerCareerTotal = ({ careerStats }) => {
   // Check if careerStats is undefined, null, or an empty array
   if (careerStats == null || !careerStats.data || careerStats.data.length === 0) {
     return "Loading career stats..."; // or some loading indicator
@@ -8,6 +8,8 @@ const PlayerCareerTotal = ({ careerStats },{playerId}) => {
 
   // Extract the array of games from the object
   const gamesArray = careerStats.data || [];
+  console.log(careerStats.data);
+  console.log(gamesArray);
 
   // Check if gamesArray is an array
   if (!Array.isArray(gamesArray)) {
@@ -18,6 +20,7 @@ const PlayerCareerTotal = ({ careerStats },{playerId}) => {
   if (!gamesArray.every(game => 'pts' in game)) {
     return "Career stats format is invalid"; // or an appropriate message
   }
+  console.log(careerStats.data);
 
   // Initialize totals for each category
   let totalPoints = 0;

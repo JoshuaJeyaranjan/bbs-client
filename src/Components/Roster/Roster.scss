@@ -1,0 +1,18 @@
+.roster{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+   
+}
+
+.roster-list{
+    display: flex;
+    list-style: none;
+    max-width: 30vw ;
+    flex-wrap: wrap;
+
+    &__item{
+        padding: 1rem;
+    }
+}

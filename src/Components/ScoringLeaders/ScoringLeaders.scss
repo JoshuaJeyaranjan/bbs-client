@@ -1,0 +1,67 @@
+.scoring-leaders{
+    display: flex;
+ 
+    margin-left: 0vw;
+   border: 1px solid;
+   border-radius: .25rem;
+   text-decoration: none;
+   list-style: none;
+   padding: 1rem;
+   flex-direction: column;
+   align-content: center;
+   align-items: center;
+   justify-content: center;
+   justify-content: space-between;
+}
+
+.button-container{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: .5rem;
+    justify-self: center;
+}
+
+.list{
+    text-decoration: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.player-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    justify-content: space-between;
+    transition: transform 0.2s ease-out; /* Add a smooth transition effect */
+
+    /* Set initial position */
+    transform: translateY(0);
+}
+
+.player-item:hover {
+    /* Move up and scale slightly on hover */
+    transform: translateY(-5px) scale(1.05);
+}
+
+.card{
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    max-width: 30vw;
+    min-width: 20vw;
+}
+
+.leader-details{
+    text-decoration: none;
+
+    
+}
+.leader-name{
+    font-weight: bold;
+    margin-bottom: .5rem;
+    margin-top: .75rem;
+}
