@@ -12,6 +12,33 @@ const TeamListPage = () => {
   const [failedAuth, setFailedAuth] = useState(false);
   const [useRetroLogos, setUseRetroLogos] = useState(false); // Added state for logo type
 
+//   const removeFromWatchlist = async (type, id) => {
+//     try {
+//       const token = sessionStorage.getItem("token");
+//       const response = await axios.delete(
+//         `http://localhost:8080/api/watchlist/${type}/${id}`,
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//           },
+//         }
+//       );
+
+//       console.log(response);
+
+//       if (response.status === 204) {
+//         // Update local state or take any additional actions on success
+//         console.log(`${type} removed from watchlist successfully`);
+//       } else {
+//         // Handle error from the server
+//         console.error(`Error removing ${type} from watchlist:`, response.data);
+//       }
+//     } catch (error) {
+//       // Handle network error or other unexpected issues
+//       console.error(`Error removing ${type} from watchlist:`, error);
+//     }
+//   };
+
   const removeFromWatchlist = async (type, id) => {
     try {
       const token = sessionStorage.getItem("token");
