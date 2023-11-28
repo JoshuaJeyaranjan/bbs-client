@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Nav from "../../Components/Nav/Nav";
 import WatchedTeams from "../../Components/WatchedTeams/WatchedTeams";
 import WatchedPlayer from "../../Components/WatchedPlayers/WatchedPlayer";
-import Generations from '../../assets/videos/generations.mp4'
+// import Generations from '../../assets/videos/generations.mp4'
 import ScoringLeaders from "../../Components/ScoringLeaders/ScoringLeaders";
 import Button from 'react-bootstrap/Button';
 import kobe from '../../assets/images/kobe.jpg';
@@ -112,11 +112,14 @@ function HomePage() {
     return (
         <div className="HomePage">
         <div className="background">
-            <div className="video-container">
+            {/* <div className="video-container">
                 <video autoPlay loop muted className="video">
                     <source src={Generations} type="video/mp4" />
                 </video>
-            </div>
+            </div> */}
+             <div className="video-container">
+        <img src={kobe} alt="background kobe image " className="video"/>
+    </div>
         
             <div className="overlay"></div>
             <p className="HomePage__header">Better Basketball Stats</p>

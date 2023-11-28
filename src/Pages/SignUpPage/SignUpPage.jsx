@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Input from '../../Components/Input/Input';
-import hero from '../../assets/videos/hero.mp4';
+// import hero from '../../assets/videos/hero.mp4';
 import './SignUpPage.scss';
 import Button from 'react-bootstrap/Button';
 import magic from '../../assets/images/magic.jpg'
